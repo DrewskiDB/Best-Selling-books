@@ -17,9 +17,12 @@ import pandas as pd
 def df_into_dict(csv):
     df = pd.read_csv(csv)
     df_sections = df.drop_duplicates(subset= ['Name', "Author"], keep= 'first')
-    df_sections_dict = df_sections.to_dict(orient = "records")
+    #for i in df_sections_dict:
+    #    print(i)
 
-    for i in df_sections_dict:
-        print(i)
+    df_sections.rename(columns= {"Name": "Title", "Year":"Publication Year", "User Rating": "Rating"},inplace= True)
+    df_dict = df_sections.to_dict(orient= "records")
 
+    for row in df_dict:
+        print(row)
 
